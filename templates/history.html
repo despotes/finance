@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Total</th>
+                <th scope="col">Date and Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(0, tr|length) %}
+            <tr>
+                <td>{{ tr[i]['company'] }}</td>
+                <td>{{ tr[i]["symbol"] }}</td>
+                <td>{{ tr[i]['price']|usd }}</td>
+                <td>{{ tr[i]['shares'] }}</td>
+                <td>{{ (tr[i]["shares"] * tr[i]['price'])|abs|usd }}</td>
+                <td>{{ tr[i]["strftime('%d-%m-%Y %H:%M:%S', datetime)"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

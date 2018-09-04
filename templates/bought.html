@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+
+<div class="alert alert-primary" role="alert">
+ Bought!
+</div>
+
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Price</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ st["name"] }}</td>
+                <td>{{ st["symbol"] }}</td>
+                <td>{{ st["price"] }}</td>
+                <td>{{ shares }}</td>
+                <td>{{ t_st_pr }}</td>
+            </tr>
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ oc }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th scope="row">{{ nc }}</th>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

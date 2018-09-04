@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Total</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(0, tr|length) %}
+            <tr>
+                <td>{{ new_st[i]['name'] }}</td>
+                <td>{{ new_prices_usd[i] }}</td>
+                <td>{{ tr[i]['SUM(shares)'] }}</td>
+                <td>{{ tr[i]["symbol"] }}</td>
+                <td>{{ tp_usd[i] }}</td>
+                <td>
+                    <form action="/buy" method="post">
+                            <input type="hidden" name="symbol" value="{{ tr[i]['symbol'] }}"/>
+                            <input class="form-control input-numbers" class="form-control" type="number" name="shares" min="0" />
+                            <input class="btn btn-outline-primary" type="submit" name="buy" value="buy"/>
+                    </form>
+                </td>
+                <td>
+                    <form action="/sell" method="post">
+                        <input type="hidden" name="symbol" value="{{ tr[i]['symbol'] }}"/>
+                        <select class="form-control input-numbers"  name="shares">
+                        {% for n in range(1, tr[i]['SUM(shares)'] + 1) %}
+                         <option value="{{ n }}">{{ n }}</option>
+                        {% endfor %}
+                        </select>
+                        <input class="btn btn-outline-secondary" type="submit" name="sell" value="sell"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ balance }}</td>
+                <td>
+                    <form action="/updatecash" method="post">
+                            <input class="form-control input-numbers" class="form-control" type="number" name="cash" min="0" />
+                            <input class="btn btn-outline-primary" type="submit" name="buy" value="Add Cash"/>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">TOTAL</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th scope="row">{{ total_sum }}</th>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

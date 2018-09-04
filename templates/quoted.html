@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ company }}</td>
+                <td>{{ price }}</td>
+                <td>{{ symbol }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Stock symbol" type="text"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Check Stock</button>
+    </form>
+
+
+
+
+
+
+{% endblock %}
